@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE_JA}} | 会津AI論文ウォッチ {{WEEK_OF}}</title>
+<style>
+  :root {
+    --ink: #1a2233;
+    --sub: #5a6478;
+    --faint: #98a1b3;
+    --line: #e3e6ec;
+    --paper: #ffffff;
+    --bg: #f2f3f0;
+    --indigo: #274690;      /* 藍 */
+    --indigo-deep: #1b3168;
+    --indigo-pale: #eef1f9;
+    --akabeko: #c0392f;     /* 赤べこ */
+    --akabeko-pale: #fbf0ee;
+    --gold: #b98a2e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    background: var(--bg); color: var(--ink);
+    line-height: 1.75; font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    padding: 28px 14px 48px;
+  }
+  .card {
+    max-width: 840px; margin: 0 auto; background: var(--paper);
+    border: 1px solid var(--line); border-radius: 14px;
+    box-shadow: 0 2px 16px rgba(26,34,51,.07);
+    overflow: hidden;
+  }
+
+  /* ---------- header ---------- */
+  .head { padding: 30px 36px 26px; border-bottom: 1px solid var(--line);
+          background: linear-gradient(180deg, #fbfcfe 0%, #fff 100%); }
+  .brand-row { display: flex; align-items: center; justify-content: space-between;
+               gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
+  .brand { font-size: 12.5px; font-weight: 700; letter-spacing: .16em; color: var(--indigo); }
+  .brand small { font-weight: 500; letter-spacing: .05em; color: var(--faint); margin-left: 8px; }
+  .week-badge { font-size: 12.5px; font-weight: 700; color: #fff; background: var(--indigo);
+                padding: 4px 14px; border-radius: 999px; letter-spacing: .06em; }
+  h1 { font-size: 26px; line-height: 1.45; font-weight: 800; letter-spacing: .01em; }
+  .title-en { margin-top: 8px; font-size: 13.5px; color: var(--sub); line-height: 1.55; }
+  .meta-row { margin-top: 14px; display: flex; gap: 14px; flex-wrap: wrap;
+              font-size: 12.5px; color: var(--faint); align-items: center; }
+  .meta-row .up { color: var(--gold); font-weight: 700; }
+
+  /* ---------- sections ---------- */
+  section { padding: 26px 36px; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: none; }
+  .sec-label { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; }
+  .sec-num { font-size: 11.5px; font-weight: 800; color: var(--indigo);
+             letter-spacing: .12em; font-variant-numeric: tabular-nums; }
+  .sec-title { font-size: 16.5px; font-weight: 800; letter-spacing: .02em; }
+
+  /* 01 one-liner */
+  .one-liner { background: var(--indigo-pale); border-left: 4px solid var(--indigo);
+               border-radius: 0 10px 10px 0; padding: 16px 20px;
+               font-size: 17px; font-weight: 700; line-height: 1.7; }
+
+  /* 02 key points */
+  .points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .point { border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; background: #fbfcfe; }
+  .point b.no { display: block; font-size: 20px; color: var(--indigo);
+                font-weight: 800; margin-bottom: 6px; line-height: 1; }
+  .point p { font-size: 13.5px; line-height: 1.7; }
+
+  /* 03 diagram */
+  .diagram-box { border: 1px solid var(--line); border-radius: 12px; padding: 20px 22px; background: #fbfcfe; }
+  .diagram-title { font-size: 13px; font-weight: 700; color: var(--sub); margin-bottom: 14px;
+                   letter-spacing: .04em; }
+  /* flow */
+  .flow { display: flex; flex-direction: column; gap: 0; }
+  .flow-step { display: flex; gap: 14px; align-items: flex-start; }
+  .flow-no { flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--indigo);
+             color: #fff; font-size: 13.5px; font-weight: 800; display: flex;
+             align-items: center; justify-content: center; margin-top: 2px; }
+  .flow-body { padding-bottom: 6px; }
+  .flow-body b { font-size: 14.5px; }
+  .flow-body p { font-size: 13px; color: var(--sub); line-height: 1.65; }
+  .flow-conn { width: 30px; display: flex; justify-content: center; }
+  .flow-conn span { width: 2px; height: 18px; background: #c3cbdd; }
+  /* comparison */
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .comp-col { border-radius: 10px; padding: 14px 16px; border: 1px solid var(--line); }
+  .comp-col.left  { background: #f6f7f9; }
+  .comp-col.right { background: var(--indigo-pale); border-color: #c9d4ef; }
+  .comp-col h4 { font-size: 13.5px; margin-bottom: 8px; }
+  .comp-col.left  h4 { color: var(--sub); }
+  .comp-col.right h4 { color: var(--indigo-deep); }
+  .comp-col ul { list-style: none; }
+  .comp-col li { font-size: 13px; line-height: 1.65; padding-left: 15px; position: relative; margin-bottom: 6px; }
+  .comp-col li::before { content: "・"; position: absolute; left: 0; color: var(--faint); }
+  .comp-col.right li::before { color: var(--indigo); }
+  /* bullets */
+  .dbullets { display: grid; gap: 10px; }
+  .dbullet { display: flex; gap: 12px; align-items: baseline; }
+  .dbullet b { flex: none; font-size: 13px; color: var(--indigo); min-width: 7em; }
+  .dbullet p { font-size: 13px; color: var(--sub); line-height: 1.65; }
+
+  /* 04 aizu connection */
+  .aizu { background: var(--akabeko-pale); border: 1px solid #efd9d5; border-radius: 12px;
+          padding: 18px 22px; }
+  .aizu .sec-inner-label { font-size: 11.5px; font-weight: 800; color: var(--akabeko);
+                           letter-spacing: .1em; margin-bottom: 8px; }
+  .aizu p.summary { font-size: 14px; line-height: 1.8; }
+  .try2w { margin-top: 14px; background: #fff; border: 1px dashed var(--akabeko);
+           border-radius: 10px; padding: 12px 16px; font-size: 13.5px; }
+  .try2w b { color: var(--akabeko); margin-right: 8px; font-size: 12.5px; }
+  .tracks { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .track { font-size: 11.5px; font-weight: 700; color: var(--indigo-deep);
+           background: #fff; border: 1px solid #c9d4ef; padding: 3px 12px; border-radius: 999px; }
+
+  /* 05 questions */
+  .qs { display: grid; gap: 10px; counter-reset: q; }
+  .q { border: 1px solid var(--line); border-radius: 10px; padding: 13px 16px 13px 48px;
+       position: relative; font-size: 14px; line-height: 1.7; background: #fff; }
+  .q::before { counter-increment: q; content: "Q" counter(q);
+               position: absolute; left: 14px; top: 13px;
+               font-size: 13px; font-weight: 800; color: var(--indigo); }
+
+  /* 06 links & runners-up */
+  .links-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .btn { display: inline-block; font-size: 13px; font-weight: 700; text-decoration: none;
+         padding: 8px 18px; border-radius: 8px; letter-spacing: .03em; }
+  .btn.arxiv { background: var(--indigo); color: #fff; }
+  .btn.hf { background: #fff; color: var(--indigo-deep); border: 1.5px solid var(--indigo); }
+  .runners h3 { font-size: 13px; color: var(--sub); font-weight: 700; margin-bottom: 10px;
+                letter-spacing: .04em; }
+  .runner { border-top: 1px solid var(--line); padding: 12px 2px; }
+  .runner .r-title { font-size: 13.5px; font-weight: 700; }
+  .runner .r-title a { color: var(--ink); text-decoration: none; border-bottom: 1px solid #c3cbdd; }
+  .runner .r-en { font-size: 11.5px; color: var(--faint); margin-top: 2px; }
+  .runner .r-comment { font-size: 12.5px; color: var(--sub); margin-top: 4px; line-height: 1.65; }
+  .runner .r-up { font-size: 11.5px; color: var(--gold); font-weight: 700; margin-left: 8px; }
+
+  /* footer */
+  .foot { padding: 16px 36px 22px; background: #fbfcfe; border-top: 1px solid var(--line);
+          font-size: 11.5px; color: var(--faint); display: flex; justify-content: space-between;
+          gap: 10px; flex-wrap: wrap; }
+  .foot a { color: var(--indigo); text-decoration: none; }
+
+  @media (max-width: 640px) {
+    body { padding: 12px 8px 32px; }
+    .head, section { padding-left: 20px; padding-right: 20px; }
+    h1 { font-size: 21px; }
+    .points { grid-template-columns: 1fr; }
+    .compare { grid-template-columns: 1fr; }
+    .foot { padding-left: 20px; padding-right: 20px; }
+  }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .card { border: none; box-shadow: none; max-width: none; }
+  }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <div class="head">
+    <div class="brand-row">
+      <div class="brand">AIZU AI RADAR<small>会津AI論文ウォッチ</small></div>
+      <div class="week-badge">{{WEEK_OF}} 週</div>
+    </div>
+    <h1>{{TITLE_JA}}</h1>
+    <div class="title-en">{{TITLE_EN}}</div>
+    <div class="meta-row">
+      <span class="up">▲ {{UPVOTES}} upvotes</span>
+      <span>{{AUTHORS}}</span>
+      <span>arXiv: {{ARXIV_ID}}</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="sec-label"><span class="sec-num">01</span><span class="sec-title">ひとことで何が新しいか</span></div>
+    <div class="one-liner">{{ONE_LINER}}</div>
+  </section>
+
+  <section>
+    <div class="sec-label"><span class="sec-num">02</span><span class="sec-title">3つの要点</span></div>
+    <div class="points">{{KEY_POINTS_HTML}}</div>
+  </section>
+
+  <section>
+    <div class="sec-label"><span class="sec-num">03</span><span class="sec-title">仕組み</span></div>
+    <div class="diagram-box">
+      <div class="diagram-title">{{DIAGRAM_TITLE}}</div>
+      {{DIAGRAM_HTML}}
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label"><span class="sec-num">04</span><span class="sec-title">会津・都市AI OSへの接続</span></div>
+    <div class="aizu">
+      <div class="sec-inner-label">WHY IT MATTERS IN AIZU</div>
+      <p class="summary">{{AIZU_SUMMARY}}</p>
+      <div class="try2w"><b>2週間以内に試すなら</b>{{TRY_2W}}</div>
+      <div class="tracks">{{TRACKS_HTML}}</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label"><span class="sec-num">05</span><span class="sec-title">勉強会で議論する問い</span></div>
+    <div class="qs">{{QUESTIONS_HTML}}</div>
+  </section>
+
+  <section>
+    <div class="sec-label"><span class="sec-num">06</span><span class="sec-title">リンクと今週の選外</span></div>
+    <div class="links-row">
+      <a class="btn arxiv" href="{{ARXIV_URL}}">arXiv で読む</a>
+      <a class="btn hf" href="{{HF_URL}}">HuggingFace で見る</a>
+    </div>
+    <div class="runners">
+      <h3>今週の選外（次点2本）</h3>
+      {{RUNNERS_UP_HTML}}
+    </div>
+  </section>
+
+  <div class="foot">
+    <span>会津AI論文ウォッチ — HuggingFace Daily Papers から週次自動選定（AI生成・要点は原論文で確認）</span>
+    <span>{{GENERATED_AT}} · <a href="../index.html">アーカイブ</a></span>
+  </div>
+
+</div>
+</body>
+</html>

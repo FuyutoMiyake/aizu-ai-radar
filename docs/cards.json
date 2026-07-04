@@ -1,0 +1,25 @@
+{
+ "cards": [
+  {
+   "week_of": "2026-07-05",
+   "featured": {
+    "arxiv_id": "2606.28733",
+    "title_ja": "AIエージェントは「これ以上は無理」と気づいて止まれるか",
+    "title_en": "Agentic Abstention: Do Agents Know When to Stop Instead of Act?",
+    "upvotes": 141
+   },
+   "runners_up": [
+    {
+     "arxiv_id": "2606.30534",
+     "title_ja": "Orca：世界はあなたの頭の中にある"
+    },
+    {
+     "arxiv_id": "2607.02512",
+     "title_ja": "プログラム・アズ・ウェイツ：あいまいな関数のためのプログラミング様式"
+    }
+   ],
+   "card": "cards/2026-07-05.html",
+   "generated_at": "2026-07-05 01:14"
+  }
+ ]
+}

@@ -1,0 +1,6 @@
+work/
+secrets/
+logs/
+.DS_Store
+*.pyc
+__pycache__/
