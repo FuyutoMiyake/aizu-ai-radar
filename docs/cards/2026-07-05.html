@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AIエージェントは「これ以上は無理」と気づいて止まれるか | 会津AI論文ウォッチ 2026-07-05</title>
+<title>長期AIエージェントのための境界付きメモリ・テストベッド | 会津AI論文ウォッチ 2026-07-05</title>
 <style>
   :root {
     --ink: #1a2233;
@@ -166,30 +166,30 @@
       <div class="brand">AIZU AI RADAR<small>会津AI論文ウォッチ</small></div>
       <div class="week-badge">2026-07-05 週</div>
     </div>
-    <h1>AIエージェントは「これ以上は無理」と気づいて止まれるか</h1>
-    <div class="title-en">Agentic Abstention: Do Agents Know When to Stop Instead of Act?</div>
+    <h1>長期AIエージェントのための境界付きメモリ・テストベッド</h1>
+    <div class="title-en">AgenticSTS: A Bounded-Memory Testbed for Long-Horizon LLM Agents</div>
     <div class="meta-row">
-      <span class="up">▲ 141 upvotes</span>
-      <span>Han Luo, Bingbing Wen, Lucy Lu Wang</span>
-      <span>arXiv: 2606.28733</span>
+      <span class="up">▲ 43 upvotes</span>
+      <span>Xiangchen Cheng, Yunwei Jiang, Jianwen Sun, et al.</span>
+      <span>arXiv: 2607.02255</span>
     </div>
   </div>
 
   <section>
     <div class="sec-label"><span class="sec-num">01</span><span class="sec-title">ひとことで何が新しいか</span></div>
-    <div class="one-liner">複数ターンで動くAIエージェントの「続ける/答える/やめる」判断力を測る新基準</div>
+    <div class="one-liner">長期エージェントの記憶を「型付き検索で毎回組み直す」設計に変え、性能と透明性を両立</div>
   </section>
 
   <section>
     <div class="sec-label"><span class="sec-num">02</span><span class="sec-title">3つの要点</span></div>
-    <div class="points"><div class="point"><b class="no">1</b><p>「これ以上やっても無駄」と気づいて行動をやめる能力を新たに定義・評価</p></div><div class="point"><b class="no">2</b><p>ネット買い物・ターミナル操作・QAの3分野28,000タスクで13種のエージェントを検証</p></div><div class="point"><b class="no">3</b><p>多くのエージェントは、無駄な聞き返しを続けるか逆に強引に答えるかのどちらかに偏る</p></div></div>
+    <div class="points"><div class="point"><b class="no">1</b><p>生の会話ログを丸ごと渡す従来設計では、どの記憶が判断に影響したか特定できない</p></div><div class="point"><b class="no">2</b><p>型付き検索（typed retrieval）で毎回プロンプトを組み立てる「境界付き記憶契約」を提案</p></div><div class="point"><b class="no">3</b><p>人間の勝率16%に対しゼロ勝という難タスクで検証し、戦略スキル有効化が最大の改善要因と判明</p></div></div>
   </section>
 
   <section>
     <div class="sec-label"><span class="sec-num">03</span><span class="sec-title">仕組み</span></div>
     <div class="diagram-box">
-      <div class="diagram-title">エージェントの「やめ時」判断ループ</div>
-      <div class="flow"><div class="flow-step"><div class="flow-no">1</div><div class="flow-body"><b>要求受信</b><p>ユーザーからの依頼・問い合わせを受け取る</p></div></div><div class="flow-conn"><span></span></div><div class="flow-step"><div class="flow-no">2</div><div class="flow-body"><b>情報収集</b><p>検索や外部システム呼び出しで状況を確認する</p></div></div><div class="flow-conn"><span></span></div><div class="flow-step"><div class="flow-no">3</div><div class="flow-body"><b>自己評価</b><p>このまま続ければ解決できるか、達成不可能かを判断する</p></div></div><div class="flow-conn"><span></span></div><div class="flow-step"><div class="flow-no">4</div><div class="flow-body"><b>分岐選択</b><p>「回答する」「情報収集を続ける」「あきらめて引き継ぐ」から選ぶ</p></div></div><div class="flow-conn"><span></span></div><div class="flow-step"><div class="flow-no">5</div><div class="flow-body"><b>実行 or 引き継ぎ</b><p>選んだ行動を実行し、未解決なら情報収集に戻る</p></div></div></div>
+      <div class="diagram-title">記憶アーキテクチャの比較</div>
+      <div class="compare"><div class="comp-col left"><h4>従来：無制限コンテキスト</h4><ul><li>過去の観察・ツール呼び出し・反省をすべて追記</li><li>コンテキスト長が判断ごとに増大し続ける</li><li>どの記憶層が判断に効いたか切り分け不可</li></ul></div><div class="comp-col right"><h4>提案：境界付き記憶契約</h4><ul><li>型付き検索で毎回新しいプロンプトを組み立てる</li><li>コンテキスト長を一定に保ち長期実行でも安定</li><li>各記憶層を個別にオフにしてアブレーション可能</li></ul></div></div>
     </div>
   </section>
 
@@ -197,32 +197,32 @@
     <div class="sec-label"><span class="sec-num">04</span><span class="sec-title">会津・都市AI OSへの接続</span></div>
     <div class="aizu">
       <div class="sec-inner-label">WHY IT MATTERS IN AIZU</div>
-      <p class="summary">デリ丸（電話AI秘書）やAI配車が、聞き取れない要望や対応不可能な依頼にいつまでも聞き返し続けたり、逆に無理に処理してしまうと高齢者の信頼を失う。「いつ止まって人に引き継ぐべきか」という本論文の枠組みは、デリ丸の人間オペレーターへの引き継ぎ判断や、配車AIが「今回は対応できません」と正直に答える設計指針になる。</p>
-      <div class="try2w"><b>2週間以内に試すなら</b>デリ丸の過去通話ログ（または模擬シナリオ）を使い、各ターンで「続行/回答/人間引き継ぎ」のどれを選ぶべきだったかをラベル付けし、現行エージェントの停止判断のズレを可視化する小規模評価を1本作る。</div>
-      <div class="tracks"><span class="track">AI Agents / workflow automation</span><span class="track">Eval / safety / governance</span></div>
+      <p class="summary">デリ丸（電話AI秘書）は高齢者との長期的な会話継続が必要で、通院記録・服薬メモ・家族情報などを適切なタイミングで参照しなければならない。境界付き記憶契約を適用すれば「今どの情報を根拠に返答したか」がログで追跡でき、AI配車（MABWiser UCB1）との連携時も過去の移動履歴を型付きで安全に参照できる。AIZU MIRRORのポリシーサンドボックスでシミュレーションし、記憶タイプの追加・削除効果を実データで検証するPoC設計にも直結する。</p>
+      <div class="try2w"><b>2週間以内に試すなら</b>デリ丸の会話管理に「通院履歴・服薬メモ・好み・家族連絡先・直近の配車」の5タイプを定義し、境界付き記憶契約を実装して既存の無制限コンテキスト版と応答品質を比較する。</div>
+      <div class="tracks"><span class="track">AI Agents / workflow automation</span><span class="track">Healthcare / elderly care / mobility</span></div>
     </div>
   </section>
 
   <section>
     <div class="sec-label"><span class="sec-num">05</span><span class="sec-title">勉強会で議論する問い</span></div>
-    <div class="qs"><div class="q">デリ丸の通話で「これ以上聞いても無理」と判断すべきタイミングをどう定義するか？会津の高齢者からの実際の相談内容を例に考えてみよう。</div><div class="q">早すぎる引き継ぎ（過剰な回避）と遅すぎる引き継ぎ（無駄なやり取り）、どちらが高齢者ユーザーの体験を損ないやすいか、トレードオフを議論しよう。</div><div class="q">会津AI配車のUCB1判断ロジックに「相乗り不可能なので運用者に引き継ぐ」という停止基準を足すとしたら、どんな指標で判定するか？</div></div>
+    <div class="qs"><div class="q">デリ丸が高齢者と毎日会話する場合、通院記録・服薬メモ・家族情報・移動履歴・好みの5タイプのうち、どれを「必ず検索する型」にし、どれを「状況依存で検索する型」にすべきか？</div><div class="q">境界付き記憶は透明性を高めるが、検索ミスで重要情報が抜け落ちるリスクがある。会津のデリ丸実運用でこのトレードオフをどう許容範囲内に収めるか？</div><div class="q">AIZU MIRRORのAIトレーニングジムで境界付き記憶エージェントを動かし、長期配車最適化シナリオを仮想検証する研究テーマとして論文化できるか？</div></div>
   </section>
 
   <section>
     <div class="sec-label"><span class="sec-num">06</span><span class="sec-title">リンクと今週の選外</span></div>
     <div class="links-row">
-      <a class="btn arxiv" href="https://arxiv.org/abs/2606.28733">arXiv で読む</a>
-      <a class="btn hf" href="https://huggingface.co/papers/2606.28733">HuggingFace で見る</a>
+      <a class="btn arxiv" href="https://arxiv.org/abs/2607.02255">arXiv で読む</a>
+      <a class="btn hf" href="https://huggingface.co/papers/2607.02255">HuggingFace で見る</a>
     </div>
     <div class="runners">
       <h3>今週の選外（次点2本）</h3>
-      <div class="runner"><div class="r-title"><a href="https://arxiv.org/abs/2606.30534">Orca：世界はあなたの頭の中にある</a><span class="r-up">▲ 201</span></div><div class="r-en">Orca: The World is in Your Mind</div><div class="r-comment">学術的注目度が最も高い「世界基盤モデル」の初期実装。会津の実データに直結する話ではないが、AIZU MIRRORのような環境シミュレーション/デジタルツインの将来像を考える上で押さえておきたい大型トピック。</div></div><div class="runner"><div class="r-title"><a href="https://arxiv.org/abs/2607.02512">プログラム・アズ・ウェイツ：あいまいな関数のためのプログラミング様式</a><span class="r-up">▲ 68</span></div><div class="r-en">Program-as-Weights: A Programming Paradigm for Fuzzy Functions</div><div class="r-comment">自然言語の仕様から軽量なローカル実行ファイル（アダプタ）を作る発想。0.6BモデルでMacBook上でも動く点が会津PJのローカルLLM/エッジAI活用と相性が良く、次点として惜しかった。</div></div>
+      <div class="runner"><div class="r-title"><a href="https://arxiv.org/abs/2606.28436">実行環境なしでコードパッチを検証するDockerless</a><span class="r-up">▲ 103</span></div><div class="r-en">Dockerless: Environment-Free Program Verifier for Coding Agents</div><div class="r-comment">今週最多upvotes（103）の話題作。Dockerイメージ不要でコードパッチの正誤をエージェント的に判定し、SFT・RLを含む完全環境フリーな後学習パイプラインを実現。少人数チームがAIエージェントで開発を進める会津プロジェクトの開発効率化に直結しうる。</div></div><div class="runner"><div class="r-title"><a href="https://arxiv.org/abs/2606.30616">パラメータを増やさずエージェント水平線を伸ばして兆パラメータ級性能を達成</a><span class="r-up">▲ 86</span></div><div class="r-en">Scaling the Horizon, Not the Parameters: Reaching Trillion-Parameter Performance with a 35B Agent</div><div class="r-comment">upvotes 86で今週2位。長期軌跡とドメイン知識のスケーリングがモデル規模拡大に匹敵する性能をもたらすことを示し、Kimi-K2やDeepSeek-V4-proに並ぶ実績で業界の話題を集める。AIエージェント開発の方向性を議論する素材として価値が高い。</div></div>
     </div>
   </section>
 
   <div class="foot">
     <span>会津AI論文ウォッチ — HuggingFace Daily Papers から週次自動選定（AI生成・要点は原論文で確認）</span>
-    <span>2026-07-05 07:13 · <a href="../index.html">アーカイブ</a></span>
+    <span>2026-07-05 07:17 · <a href="../index.html">アーカイブ</a></span>
   </div>
 
 </div>

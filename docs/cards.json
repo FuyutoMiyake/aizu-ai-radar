@@ -3,23 +3,23 @@
   {
    "week_of": "2026-07-05",
    "featured": {
-    "arxiv_id": "2606.28733",
-    "title_ja": "AIエージェントは「これ以上は無理」と気づいて止まれるか",
-    "title_en": "Agentic Abstention: Do Agents Know When to Stop Instead of Act?",
-    "upvotes": 141
+    "arxiv_id": "2607.02255",
+    "title_ja": "長期AIエージェントのための境界付きメモリ・テストベッド",
+    "title_en": "AgenticSTS: A Bounded-Memory Testbed for Long-Horizon LLM Agents",
+    "upvotes": 43
    },
    "runners_up": [
     {
-     "arxiv_id": "2606.30534",
-     "title_ja": "Orca：世界はあなたの頭の中にある"
+     "arxiv_id": "2606.28436",
+     "title_ja": "実行環境なしでコードパッチを検証するDockerless"
     },
     {
-     "arxiv_id": "2607.02512",
-     "title_ja": "プログラム・アズ・ウェイツ：あいまいな関数のためのプログラミング様式"
+     "arxiv_id": "2606.30616",
+     "title_ja": "パラメータを増やさずエージェント水平線を伸ばして兆パラメータ級性能を達成"
     }
    ],
    "card": "cards/2026-07-05.html",
-   "generated_at": "2026-07-05 07:13"
+   "generated_at": "2026-07-05 07:17"
   }
  ]
 }
