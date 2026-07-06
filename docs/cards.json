@@ -1,6 +1,27 @@
 {
  "cards": [
   {
+   "week_of": "2026-07-06",
+   "featured": {
+    "arxiv_id": "2607.02255",
+    "title_ja": "境界付きメモリで動く長期LLMエージェントのテストベッド: AgenticSTS",
+    "title_en": "AgenticSTS: A Bounded-Memory Testbed for Long-Horizon LLM Agents",
+    "upvotes": 47
+   },
+   "runners_up": [
+    {
+     "arxiv_id": "2606.28436",
+     "title_ja": "Dockerless：実行環境なしでコードパッチの正誤を判定するエージェント型検証器"
+    },
+    {
+     "arxiv_id": "2606.30616",
+     "title_ja": "パラメータではなく地平線をスケールする：35Bエージェントで1兆パラメータ級性能を実現"
+    }
+   ],
+   "card": "cards/2026-07-06.html",
+   "generated_at": "2026-07-06 09:02"
+  },
+  {
    "week_of": "2026-07-05",
    "featured": {
     "arxiv_id": "2606.28733",
