@@ -1,6 +1,27 @@
 {
  "cards": [
   {
+   "week_of": "2026-07-13",
+   "featured": {
+    "arxiv_id": "2607.02770",
+    "title_ja": "Gemma 4：音声・画像統合オープンウェイトLLMの新世代",
+    "title_en": "Gemma 4 Technical Report",
+    "upvotes": 59
+   },
+   "runners_up": [
+    {
+     "arxiv_id": "2606.29526",
+     "title_ja": "LLM強化学習の本当の目標：推論ポリシーの単調改善（MIPI）"
+    },
+    {
+     "arxiv_id": "2607.03118",
+     "title_ja": "Vidu S1：音声操作できるリアルタイムインタラクティブ動画生成モデル"
+    }
+   ],
+   "card": "cards/2026-07-13.html",
+   "generated_at": "2026-07-13 09:02"
+  },
+  {
    "week_of": "2026-07-06",
    "featured": {
     "arxiv_id": "2607.02255",
