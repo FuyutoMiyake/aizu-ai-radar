@@ -1,6 +1,27 @@
 {
  "cards": [
   {
+   "week_of": "2026-07-20",
+   "featured": {
+    "arxiv_id": "2607.13285",
+    "title_ja": "ハーネス設計書：進化するAIエージェント基盤コードを読みやすく・探しやすく・改修しやすくする",
+    "title_en": "Harness Handbook: Making Evolving Agent Harnesses Readable, Navigable, and Editable",
+    "upvotes": 198
+   },
+   "runners_up": [
+    {
+     "arxiv_id": "2607.14952",
+     "title_ja": "LongStraw：固定GPUバジェット下で200万トークン超のRL後学習を実現するスタック"
+    },
+    {
+     "arxiv_id": "2607.14935",
+     "title_ja": "VideoChat3：完全オープンな効率的・汎用動画マルチモーダルLLM"
+    }
+   ],
+   "card": "cards/2026-07-20.html",
+   "generated_at": "2026-07-20 09:02"
+  },
+  {
    "week_of": "2026-07-13",
    "featured": {
     "arxiv_id": "2607.02770",
